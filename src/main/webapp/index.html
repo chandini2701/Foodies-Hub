@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TapFoods | Delicious Food Delivered</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8f4e9;
+            color: #25291f;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 76px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: 800;
+            color: #59652d;
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: #e96d4c;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            color: #34382d;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e96d4c;
+        }
+
+        .nav-login {
+            padding: 11px 20px;
+            border: 1px solid #59652d;
+            border-radius: 25px;
+            color: #59652d !important;
+        }
+
+        .nav-register {
+            background: #e96d4c;
+            color: white !important;
+            padding: 12px 20px;
+            border-radius: 25px;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+            padding: 70px 7%;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(38, 43, 25, 0.88) 0%,
+                    rgba(38, 43, 25, 0.68) 45%,
+                    rgba(38, 43, 25, 0.20) 100%
+                ),
+                url("https://images.unsplash.com/photo-1631515242808-497c3fbd3972?auto=format&fit=crop&w=1800&q=90")
+                center/cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 650px;
+            color: white;
+        }
+
+        .hero-small {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 9px 16px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            line-height: 1.08;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+        }
+
+        .hero h1 span {
+            color: #ff9675;
+        }
+
+        .hero p {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #f3f3ed;
+            max-width: 570px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-btn {
+            background: #e96d4c;
+            color: white;
+            padding: 15px 27px;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .primary-btn:hover {
+            background: #d95738;
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #424b25;
+            padding: 15px 27px;
+            border-radius: 30px;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        /* ================= SEARCH ================= */
+
+        .search-section {
+            width: 86%;
+            max-width: 1100px;
+            margin: -42px auto 0;
+            position: relative;
+            z-index: 5;
+        }
+
+        .search-box {
+            background: white;
+            padding: 18px;
+            border-radius: 18px;
+            display: flex;
+            gap: 12px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: 1px solid #e0dfd6;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .search-box button {
+            border: none;
+            background: #59652d;
+            color: white;
+            padding: 0 28px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            padding: 80px 7%;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            color: #303621;
+            margin-bottom: 8px;
+        }
+
+        .section-heading p {
+            color: #73766b;
+            line-height: 1.6;
+        }
+
+        .view-all {
+            color: #e96d4c;
+            font-weight: 700;
+        }
+
+        /* ================= CATEGORIES ================= */
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 22px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .category-name {
+            padding: 17px;
+            font-size: 17px;
+            font-weight: 700;
+            color: #343a27;
+        }
+
+        /* ================= RESTAURANTS ================= */
+
+        .restaurant-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.07);
+            transition: 0.3s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-info {
+            padding: 22px;
+        }
+
+        .restaurant-info h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .restaurant-info p {
+            color: #77796f;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .restaurant-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .rating {
+            background: #59652d;
+            color: white;
+            padding: 7px 11px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .menu-link {
+            color: #e96d4c;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        /* ================= OFFER ================= */
+
+        .offer {
+            margin: 0 7%;
+            min-height: 300px;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(54, 62, 29, 0.95),
+                    rgba(54, 62, 29, 0.62)
+                ),
+                url("https://images.unsplash.com/photo-1774806189430-0aef409df5cd?auto=format&fit=crop&fm=jpg&q=80&w=1600")
+                center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 50px;
+            color: white;
+        }
+
+        .offer-content {
+            max-width: 550px;
+        }
+
+        .offer-content small {
+            color: #ffad91;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .offer-content h2 {
+            font-size: 38px;
+            margin: 12px 0;
+        }
+
+        .offer-content p {
+            color: #f1f1e9;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        /* ================= WHY US ================= */
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .why-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid #ebe8dc;
+        }
+
+        .why-number {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #59652d;
+            color: white;
+            border-radius: 50%;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .why-card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .why-card p {
+            color: #74766d;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            margin-top: 70px;
+            background: #303620;
+            color: white;
+            padding: 55px 7% 25px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            padding-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: #ff8a68;
+        }
+
+        .footer-about {
+            color: #cdd0c2;
+            line-height: 1.7;
+            max-width: 350px;
+            font-size: 14px;
+        }
+
+        footer h4 {
+            margin-bottom: 18px;
+        }
+
+        footer a {
+            display: block;
+            color: #cdd0c2;
+            margin-bottom: 11px;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            color: #ff9675;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            padding-top: 22px;
+            color: #aeb2a3;
+            font-size: 13px;
+            text-align: center;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1000px) {
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .restaurant-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                gap: 14px;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                height: auto;
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 560px;
+                padding: 60px 6%;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .search-section {
+                width: 90%;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box button {
+                height: 48px;
+            }
+
+            .categories,
+            .restaurant-grid,
+            .why-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 60px 6%;
+            }
+
+            .section-heading {
+                align-items: start;
+                gap: 15px;
+                flex-direction: column;
+            }
+
+            .offer {
+                margin: 0 6%;
+                padding: 35px 25px;
+            }
+
+            .offer-content h2 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            Tap<span>Foods</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">Home</a>
+<a href="UserRestaurantServlet">
+            
+Restaurants</a>
+
+            <a href="UserRestaurantServlet"></a>
+            
+
+            <!-- FIXED -->
+            <a href="OrderHistoryServlet">Orders</a>
+
+            <a href="CartViewServlet">Cart</a>
+
+            <a href="login.html" class="nav-login">Login</a>
+
+            <a href="register.html" class="nav-register">Register</a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-small">
+                Fresh food • Fast delivery • Great taste
+            </div>
+
+            <h1>
+                Good food,<br>
+                <span>good mood.</span>
+            </h1>
+
+            <p>
+                Discover delicious meals from your favourite restaurants
+                and get them delivered fresh and fast to your doorstep.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="restaurants.html" class="primary-btn">
+                    Explore Restaurants
+                </a>
+
+                <a href="UserRestaurantServlet" class="secondary-btn">
+                    View Menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SEARCH ================= -->
+
+    <div class="search-section">
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search for restaurants or dishes..."
+            >
+
+            <button type="button">
+                Search
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= CATEGORIES ================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Explore by category</h2>
+
+                <p>
+                    Find something delicious for every craving.
+                </p>
+
+            </div>
+
+            <a href="UserRestaurantServlet" class="view-all">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div class="categories">
+
+            <a href="UserRestaurantServlet" class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1631515242808-497c3fbd3972?auto=format&fit=crop&w=800&q=85"
+                    alt="Biryani"
+                >
+
+                <div class="category-name">
+                    Biryani
+                </div>
+
+            </a>
+
+
+            <a href="UserRestaurantServlet" class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1743517894265-c86ab035adef?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+                    alt="Dosa"
+                >
+
+                <div class="category-name">
+                    South Indian
+                </div>
+
+            </a>
+
+
+            <a href="UserRestaurantServlet" class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1783499218612-b2cb8767a68e?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+                    alt="Burger"
+                >
+
+                <div class="category-name">
+                    Burgers
+                </div>
+
+            </a>
+
+
+            <a href="UserRestaurantServlet" class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1780642207472-5d2e942e4425?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+                    alt="Pizza"
+                >
+
+                <div class="category-name">
+                    Pizza
+                </div>
+
+            </a>
+
+
+            <a href="UserRestaurantServlet" class="category-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1738608084602-f9543952188e?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+                    alt="Momos"
+                >
+
+                <div class="category-name">
+                    Momos
+                </div>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= RESTAURANTS ================= -->
+
+    <section class="section" style="padding-top: 20px;">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Popular restaurants</h2>
+
+                <p>
+                    Order from restaurants loved by foodies.
+                </p>
+
+            </div>
+
+            <a href="restaurants.html" class="view-all">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div class="restaurant-grid">
+
+
+            <!-- Restaurant 1 -->
+
+            <div class="restaurant-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1631515242808-497c3fbd3972?auto=format&fit=crop&w=1000&q=85"
+                    alt="Paradise Biryani"
+                >
+
+                <div class="restaurant-info">
+
+                    <h3>Paradise Biryani</h3>
+
+                    <p>
+                        Hyderabadi • Biryani • 30 mins
+                    </p>
+
+                    <div class="restaurant-bottom">
+
+                        <span class="rating">
+                            ★ 4.5
+                        </span>
+
+                        <a href="UserRestaurantServlet" class="menu-link">
+                            View Menu →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant 2 -->
+
+            <div class="restaurant-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1000&q=85"
+                    alt="Empire Restaurant"
+                >
+
+                <div class="restaurant-info">
+
+                    <h3>Empire Restaurant</h3>
+
+                    <p>
+                        North Indian • Main Course • 35 mins
+                    </p>
+
+                    <div class="restaurant-bottom">
+
+                        <span class="rating">
+                            ★ 4.3
+                        </span>
+
+                        <a href="UserRestaurantServlet" class="menu-link">
+                            View Menu →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Restaurant 3 -->
+
+            <div class="restaurant-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1743517894265-c86ab035adef?auto=format&fit=crop&fm=jpg&q=80&w=1200"
+                    alt="Udupi Garden"
+                >
+
+                <div class="restaurant-info">
+
+                    <h3>Udupi Garden</h3>
+
+                    <p>
+                        South Indian • Breakfast • 25 mins
+                    </p>
+
+                    <div class="restaurant-bottom">
+
+                        <span class="rating">
+                            ★ 4.4
+                        </span>
+
+                        <a href="UserRestaurantServlet" class="menu-link">
+                            View Menu →
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= OFFER ================= -->
+
+    <section class="offer">
+
+        <div class="offer-content">
+
+            <small>
+                Special offer
+            </small>
+
+            <h2>
+                Your first order<br>
+                deserves a little extra.
+            </h2>
+
+            <p>
+                Enjoy delicious food from your favourite restaurants
+                and make your first TapFoods order special.
+            </p>
+
+            <a href="restaurants.html" class="primary-btn">
+                Start Ordering
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= WHY TAPFOODS ================= -->
+
+    <section class="section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <h2>Why choose TapFoods?</h2>
+
+                <p>
+                    Everything you need for a simple food ordering experience.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="why-grid">
+
+            <div class="why-card">
+
+                <div class="why-number">
+                    01
+                </div>
+
+                <h3>
+                    Fresh food
+                </h3>
+
+                <p>
+                    Order freshly prepared meals from restaurants
+                    around your area.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-number">
+                    02
+                </div>
+
+                <h3>
+                    Quick delivery
+                </h3>
+
+                <p>
+                    Choose from restaurants with convenient
+                    delivery times.
+                </p>
+
+            </div>
+
+
+            <div class="why-card">
+
+                <div class="why-number">
+                    03
+                </div>
+
+                <h3>
+                    Easy ordering
+                </h3>
+
+                <p>
+                    Browse restaurants, choose your food and
+                    move through checkout with ease.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="footer-grid">
+
+            <div>
+
+                <div class="footer-logo">
+                    Tap<span>Foods</span>
+                </div>
+
+                <p class="footer-about">
+                    Delicious food from your favourite restaurants,
+                    brought closer to you with a simple ordering experience.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Explore
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+               
+               <a href="UserRestaurantServlet">
+                    Restaurants
+                </a>
+
+                <a href="UserRestaurantServlet">
+                    Menu
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Orders
+                </h4>
+
+                <a href="CartViewServlet">
+                    Cart
+                </a>
+
+                <!-- FIXED -->
+                <a href="CheckoutServlet">
+                    Checkout
+                </a>
+
+                <!-- FIXED -->
+                <a href="OrderHistoryServlet">
+                    Order History
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Account
+                </h4>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a href="register.html">
+                    Register
+                </a>
+
+                <a href="admin.html">
+                    Admin
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+            © 2026 TapFoods. All rights reserved.
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
