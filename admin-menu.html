@@ -1,1 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Foodies Hub | Manage Menu</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f7f3ec;
+    color: #29251f;
+}
+
+/* NAVBAR */
+nav {
+    background: #26352b;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #f5c76b;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: #f5c76b;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 50px 20px 30px;
+}
+
+.header h1 {
+    color: #26352b;
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #777;
+}
+
+/* CONTAINER */
+.container {
+    width: 86%;
+    max-width: 1100px;
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+/* RESTAURANT SELECT */
+.restaurant-box {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    border: 1px solid #e4dfd5;
+    margin-bottom: 30px;
+}
+
+.restaurant-box label {
+    display: block;
+    font-weight: bold;
+    color: #26352b;
+    margin-bottom: 10px;
+}
+
+.restaurant-box select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    font-size: 14px;
+}
+
+/* MENU GRID */
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.menu-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid #e4dfd5;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.menu-content {
+    padding: 20px;
+}
+
+.menu-content h3 {
+    color: #26352b;
+    margin-bottom: 8px;
+}
+
+.category {
+    color: #e96d4c;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.description {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.price {
+    font-size: 19px;
+    font-weight: bold;
+    color: #26352b;
+}
+
+/* BUTTON */
+.add-btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: #e96d4c;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    background: #d95738;
+}
+
+/* FOOTER */
+footer {
+    background: #26352b;
+    color: white;
+    text-align: center;
+    padding: 30px;
+}
+
+footer a {
+    color: #f5c76b;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+}
+
+footer p {
+    margin-top: 12px;
+    color: #ccc;
+    font-size: 13px;
+}
+
+/* MOBILE */
+@media (max-width: 800px) {
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">
+        Foodies Hub
+    </div>
+
+    <div>
+        <a href="admin.html">Dashboard</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="orders.html">Orders</a>
+        <a href="index.html">Website</a>
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="header">
+
+    <h1>Manage Menu</h1>
+
+    <p>View and manage food items available in your restaurants</p>
+
+</section>
+
+
+<div class="container">
+
+    <!-- RESTAURANT -->
+
+    <div class="restaurant-box">
+
+        <label for="restaurant">
+            Select Restaurant
+        </label>
+
+        <select id="restaurant">
+
+            <option>Paradise Biryani</option>
+            <option>Empire Restaurant</option>
+            <option>Udupi Garden</option>
+            <option>Meghana Foods</option>
+            <option>Truffles</option>
+
+        </select>
+
+    </div>
+
+
+    <!-- MENU -->
+
+    <div class="menu-grid">
+
+
+        <!-- ITEM 1 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/FOOD_CATALOG/IMAGES/CMS/2025/4/3/ea657516-d730-487b-a4ab-0358095b60df_745cafb8-f6ff-41a7-9592-f13f4a665275.jpg"
+                alt="Chicken 65"
+            >
+
+            <div class="menu-content">
+
+                <h3>Chicken 65</h3>
+
+                <div class="category">
+                    Non-Veg
+                </div>
+
+                <p class="description">
+                    Crispy and spicy chicken starter.
+                </p>
+
+                <div class="price">
+                    ₹220
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Chicken 65')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 2 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://rgonuzemdlvliqvpketn.supabase.co/storage/v1/object/public/menu-items/butter-chicken.jpg"
+                alt="Butter Chicken"
+            >
+
+            <div class="menu-content">
+
+                <h3>Butter Chicken</h3>
+
+                <div class="category">
+                    Non-Veg
+                </div>
+
+                <p class="description">
+                    Creamy and rich Indian chicken curry.
+                </p>
+
+                <div class="price">
+                    ₹280
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Butter Chicken')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 3 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://b.zmtcdn.com/data/dish_photos/824/f488f9a9217b5848609e96b414b29824.jpeg"
+                alt="Chicken Tikka"
+            >
+
+            <div class="menu-content">
+
+                <h3>Chicken Tikka</h3>
+
+                <div class="category">
+                    Non-Veg
+                </div>
+
+                <p class="description">
+                    Tender grilled chicken with Indian spices.
+                </p>
+
+                <div class="price">
+                    ₹260
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Chicken Tikka')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 4 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://catalogue.bikanervala.com/cdn/shop/files/ButterNaan.jpg?v=1733814342"
+                alt="Butter Naan"
+            >
+
+            <div class="menu-content">
+
+                <h3>Butter Naan</h3>
+
+                <div class="category">
+                    Bread
+                </div>
+
+                <p class="description">
+                    Soft naan topped with butter.
+                </p>
+
+                <div class="price">
+                    ₹120
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Butter Naan')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 5 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"
+                alt="Paneer Butter Masala"
+            >
+
+            <div class="menu-content">
+
+                <h3>Paneer Butter Masala</h3>
+
+                <div class="category">
+                    Vegetarian
+                </div>
+
+                <p class="description">
+                    Creamy paneer cooked in a rich tomato gravy.
+                </p>
+
+                <div class="price">
+                    ₹240
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Paneer Butter Masala')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ITEM 6 -->
+
+        <div class="menu-card">
+
+            <img
+                src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=800&q=80"
+                alt="Masala Dosa"
+            >
+
+            <div class="menu-content">
+
+                <h3>Masala Dosa</h3>
+
+                <div class="category">
+                    South Indian
+                </div>
+
+                <p class="description">
+                    Crispy dosa served with potato masala.
+                </p>
+
+                <div class="price">
+                    ₹180
+                </div>
+
+                <button
+                    class="add-btn"
+                    onclick="editItem('Masala Dosa')"
+                >
+                    Edit Item
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div>
+
+        <a href="admin.html">Dashboard</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="menu.html">Menu</a>
+        <a href="orders.html">Orders</a>
+
+    </div>
+
+    <p>
+        © 2026 Foodies Hub. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+function editItem(itemName) {
+
+    alert(
+        "Edit option selected for: " + itemName +
+        "\n\nThis is a static GitHub Pages demo."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
