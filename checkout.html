@@ -1,1 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Foodies Hub | Checkout</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#fffaf5;
+    color:#333;
+}
+
+/* NAVBAR */
+
+.navbar{
+    height:70px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    color:#e23744;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#e23744;
+}
+
+
+/* CHECKOUT */
+
+.checkout-section{
+    max-width:1050px;
+    margin:50px auto;
+    padding:0 20px;
+}
+
+.checkout-section h1{
+    text-align:center;
+    font-size:36px;
+    margin-bottom:35px;
+}
+
+.checkout-container{
+    display:grid;
+    grid-template-columns:1.5fr 1fr;
+    gap:30px;
+}
+
+
+/* BOX */
+
+.box{
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.box h2{
+    margin-bottom:25px;
+}
+
+
+/* FORM */
+
+.form-group{
+    margin-bottom:20px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+    width:100%;
+    padding:12px;
+    border:1px solid #ddd;
+    border-radius:7px;
+    font-size:15px;
+    outline:none;
+}
+
+.form-group textarea{
+    height:100px;
+    resize:none;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+    border-color:#e23744;
+}
+
+
+/* ORDER SUMMARY */
+
+.order-item{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eee;
+}
+
+.order-item span:last-child{
+    font-weight:bold;
+}
+
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+}
+
+.grand-total{
+    font-size:22px;
+    font-weight:bold;
+    margin-top:20px;
+    padding-top:20px;
+    border-top:2px solid #eee;
+}
+
+
+/* BUTTON */
+
+.place-order{
+    width:100%;
+    margin-top:25px;
+    padding:14px;
+    background:#e23744;
+    color:white;
+    border:none;
+    border-radius:7px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.place-order:hover{
+    background:#c82333;
+}
+
+
+/* FOOTER */
+
+.footer{
+    margin-top:80px;
+    background:#222;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+    .nav-links{
+        gap:12px;
+        font-size:13px;
+    }
+
+    .logo{
+        font-size:22px;
+    }
+
+    .checkout-container{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+    <div class="logo">
+        Foodies Hub
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="restaurants.html">
+            Restaurants
+        </a>
+
+        <a href="menu.html">
+            Menu
+        </a>
+
+        <a href="cart.html">
+            Cart
+        </a>
+
+        <a href="orders.html">
+            Orders
+        </a>
+
+    </div>
+
+</div>
+
+
+
+<!-- CHECKOUT -->
+
+<div class="checkout-section">
+
+    <h1>
+        Checkout
+    </h1>
+
+
+    <div class="checkout-container">
+
+
+        <!-- DELIVERY DETAILS -->
+
+        <div class="box">
+
+            <h2>
+                Delivery Details
+            </h2>
+
+
+            <div class="form-group">
+
+                <label>
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Enter your phone number"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Address
+                </label>
+
+                <textarea
+                    id="address"
+                    placeholder="Enter your delivery address"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    City
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    placeholder="Enter your city"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Payment Method
+                </label>
+
+                <select id="payment">
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option value="Cash on Delivery">
+                        Cash on Delivery
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="Card">
+                        Credit / Debit Card
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                class="place-order"
+                onclick="placeOrder()"
+            >
+                Place Order
+            </button>
+
+        </div>
+
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="box">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="order-item">
+
+                <span>
+                    Chicken 65 × 1
+                </span>
+
+                <span>
+                    ₹220
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Item Total
+                </span>
+
+                <span>
+                    ₹220
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Delivery Fee
+                </span>
+
+                <span>
+                    ₹30
+                </span>
+
+            </div>
+
+
+            <div class="summary-row">
+
+                <span>
+                    Tax
+                </span>
+
+                <span>
+                    ₹10
+                </span>
+
+            </div>
+
+
+            <div class="summary-row grand-total">
+
+                <span>
+                    Total
+                </span>
+
+                <span>
+                    ₹260
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    <p>
+        © 2026 Foodies Hub. All Rights Reserved.
+    </p>
+
+</div>
+
+
+
+<script>
+
+function placeOrder(){
+
+    let name =
+        document.getElementById("name").value;
+
+    let phone =
+        document.getElementById("phone").value;
+
+    let address =
+        document.getElementById("address").value;
+
+    let city =
+        document.getElementById("city").value;
+
+    let payment =
+        document.getElementById("payment").value;
+
+
+    if(
+        name === "" ||
+        phone === "" ||
+        address === "" ||
+        city === "" ||
+        payment === ""
+    ){
+
+        alert("Please fill all the details.");
+
+        return;
+
+    }
+
+
+    alert(
+        "Order placed successfully! 🎉"
+    );
+
+
+    window.location.href = "orders.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
