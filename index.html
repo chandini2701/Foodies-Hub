@@ -1,1 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Foodies Hub | Good Food, Good Mood</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#fffaf5;
+    color:#222;
+}
+
+/* NAVBAR */
+.navbar{
+    width:100%;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 7%;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#ff4d2d;
+}
+
+.logo span{
+    color:#222;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.nav-links a:hover{
+    color:#ff4d2d;
+}
+
+.login-btn{
+    border:2px solid #ff4d2d;
+    padding:9px 20px;
+    border-radius:25px;
+    color:#ff4d2d !important;
+}
+
+/* HERO */
+.hero{
+    min-height:570px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:70px 7%;
+    background:linear-gradient(135deg,#fff3e8,#fff9f5);
+}
+
+.hero-content{
+    max-width:570px;
+}
+
+.small-title{
+    color:#ff4d2d;
+    font-weight:bold;
+    font-size:17px;
+    margin-bottom:15px;
+}
+
+.hero h1{
+    font-size:60px;
+    line-height:1.08;
+    margin-bottom:20px;
+}
+
+.hero h1 span{
+    color:#ff4d2d;
+}
+
+.hero p{
+    font-size:18px;
+    color:#666;
+    line-height:1.7;
+    margin-bottom:30px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+}
+
+.btn{
+    text-decoration:none;
+    padding:14px 27px;
+    border-radius:30px;
+    font-weight:bold;
+    display:inline-block;
+    transition:0.3s;
+}
+
+.primary{
+    background:#ff4d2d;
+    color:white;
+}
+
+.primary:hover{
+    background:#e83d20;
+    transform:translateY(-3px);
+}
+
+.secondary{
+    border:2px solid #ff4d2d;
+    color:#ff4d2d;
+}
+
+.secondary:hover{
+    background:#ff4d2d;
+    color:white;
+}
+
+.hero-image{
+    width:470px;
+    height:470px;
+    border-radius:50%;
+    overflow:hidden;
+    box-shadow:0 20px 45px rgba(0,0,0,0.18);
+    border:12px solid white;
+}
+
+.hero-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* SEARCH */
+.search-section{
+    margin:-35px auto 60px;
+    width:86%;
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    position:relative;
+}
+
+.search-box{
+    display:flex;
+    gap:12px;
+}
+
+.search-box input{
+    flex:1;
+    padding:17px 20px;
+    border:1px solid #ddd;
+    border-radius:12px;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box button{
+    border:none;
+    background:#ff4d2d;
+    color:white;
+    padding:0 30px;
+    border-radius:12px;
+    font-size:16px;
+    font-weight:bold;
+}
+
+/* COMMON */
+.section{
+    padding:65px 7%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-title h2{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:#777;
+}
+
+/* CATEGORIES */
+.categories{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+}
+
+.category{
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.07);
+    transition:0.3s;
+}
+
+.category:hover{
+    transform:translateY(-8px);
+}
+
+.category img{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+.category h3{
+    font-size:18px;
+}
+
+/* RESTAURANTS */
+.restaurant-section{
+    background:#fff;
+}
+
+.restaurants{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.restaurant-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 7px 25px rgba(0,0,0,0.09);
+    transition:0.3s;
+}
+
+.restaurant-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 15px 30px rgba(0,0,0,0.14);
+}
+
+.restaurant-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.restaurant-info{
+    padding:20px;
+}
+
+.restaurant-info h3{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.rating{
+    color:#f39c12;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.restaurant-info p{
+    color:#777;
+    margin-bottom:15px;
+}
+
+.view-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#ff4d2d;
+    color:white;
+    padding:10px 18px;
+    border-radius:22px;
+    font-weight:bold;
+}
+
+/* OFFER */
+.offer{
+    margin:30px 7%;
+    padding:55px;
+    border-radius:25px;
+    background:#222;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.offer h2{
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+.offer p{
+    color:#ddd;
+    font-size:17px;
+}
+
+/* WHY US */
+.features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+
+.feature{
+    background:white;
+    padding:30px 20px;
+    text-align:center;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.07);
+}
+
+.feature-icon{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.feature h3{
+    margin-bottom:10px;
+}
+
+.feature p{
+    color:#777;
+    line-height:1.5;
+}
+
+/* FOOTER */
+footer{
+    background:#181818;
+    color:white;
+    padding:45px 7% 20px;
+}
+
+.footer-content{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:40px;
+}
+
+.footer-logo{
+    font-size:27px;
+    font-weight:bold;
+    color:#ff4d2d;
+    margin-bottom:15px;
+}
+
+footer p{
+    color:#bbb;
+    line-height:1.6;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer a{
+    display:block;
+    color:#bbb;
+    text-decoration:none;
+    margin:10px 0;
+}
+
+footer a:hover{
+    color:#ff4d2d;
+}
+
+.copyright{
+    text-align:center;
+    border-top:1px solid #333;
+    margin-top:35px;
+    padding-top:20px;
+    color:#888;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+    .nav-links{
+        gap:12px;
+    }
+
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        gap:40px;
+    }
+
+    .hero-buttons{
+        justify-content:center;
+    }
+
+    .hero-image{
+        width:350px;
+        height:350px;
+    }
+
+    .categories{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .restaurants{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .features{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .footer-content{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .navbar{
+        padding:15px 4%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding:50px 5%;
+    }
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero-image{
+        width:280px;
+        height:280px;
+    }
+
+    .categories,
+    .restaurants,
+    .features{
+        grid-template-columns:1fr;
+    }
+
+    .offer{
+        margin:20px 5%;
+        padding:35px 25px;
+    }
+
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Foodies<span>Hub</span></div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="menu.html">Menu</a>
+        <a href="orders.html">Orders</a>
+        <a href="cart.html">Cart 🛒</a>
+        <a href="login.html" class="login-btn">Login</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-content">
+        <div class="small-title">🍴 Delicious food, delivered fast</div>
+
+        <h1>
+            Good food.<br>
+            <span>Good mood.</span>
+        </h1>
+
+        <p>
+            Discover delicious meals from your favourite restaurants
+            and get them delivered right to your doorstep.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="restaurants.html" class="btn primary">
+                Explore Restaurants
+            </a>
+
+            <a href="menu.html" class="btn secondary">
+                View Menu
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80"
+             alt="Delicious food">
+    </div>
+
+</section>
+
+<!-- SEARCH -->
+<div class="search-section">
+    <div class="search-box">
+        <input type="text" placeholder="Search for restaurants or food...">
+        <button>Search</button>
+    </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+
+    <div class="section-title">
+        <h2>Explore by Category</h2>
+        <p>What are you craving today?</p>
+    </div>
+
+    <div class="categories">
+
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=500&q=80">
+            <h3>Biryani</h3>
+        </div>
+
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1630383249896-424e482df921?auto=format&fit=crop&w=500&q=80">
+            <h3>South Indian</h3>
+        </div>
+
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=500&q=80">
+            <h3>Burgers</h3>
+        </div>
+
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=500&q=80">
+            <h3>Pizza</h3>
+        </div>
+
+        <div class="category">
+            <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=500&q=80">
+            <h3>Momos</h3>
+        </div>
+
+    </div>
+</section>
+
+<!-- RESTAURANTS -->
+<section class="section restaurant-section">
+
+    <div class="section-title">
+        <h2>Popular Restaurants</h2>
+        <p>Top places loved by foodies</p>
+    </div>
+
+    <div class="restaurants">
+
+        <div class="restaurant-card">
+
+            <img src="https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=900&q=80">
+
+            <div class="restaurant-info">
+                <h3>Paradise Biryani</h3>
+                <div class="rating">★ 4.5</div>
+                <p>Authentic Hyderabadi biryani & Indian cuisine</p>
+
+                <a href="menu.html" class="view-btn">View Menu</a>
+            </div>
+
+        </div>
+
+        <div class="restaurant-card">
+
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80">
+
+            <div class="restaurant-info">
+                <h3>Empire Restaurant</h3>
+                <div class="rating">★ 4.4</div>
+                <p>Popular Indian, Chinese & Arabian dishes</p>
+
+                <a href="menu.html" class="view-btn">View Menu</a>
+            </div>
+
+        </div>
+
+        <div class="restaurant-card">
+
+            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80">
+
+            <div class="restaurant-info">
+                <h3>Udupi Garden</h3>
+                <div class="rating">★ 4.6</div>
+                <p>Fresh South Indian vegetarian delicacies</p>
+
+                <a href="menu.html" class="view-btn">View Menu</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- OFFER -->
+<section class="offer">
+
+    <div>
+        <h2>Hungry? We've got you! 🍽️</h2>
+        <p>Order your favourite food and enjoy it at home.</p>
+    </div>
+
+    <a href="restaurants.html" class="btn primary">
+        Order Now
+    </a>
+
+</section>
+
+<!-- WHY CHOOSE US -->
+<section class="section">
+
+    <div class="section-title">
+        <h2>Why Choose FoodiesHub?</h2>
+        <p>Everything you need for a great food experience</p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature">
+            <div class="feature-icon">🚀</div>
+            <h3>Fast Delivery</h3>
+            <p>Get your favourite food delivered quickly.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">🍴</div>
+            <h3>Best Restaurants</h3>
+            <p>Choose from a variety of restaurants.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">💳</div>
+            <h3>Easy Ordering</h3>
+            <p>Simple and convenient food ordering.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon">⭐</div>
+            <h3>Quality Food</h3>
+            <p>Enjoy delicious and fresh meals.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+            <div class="footer-logo">FoodiesHub</div>
+            <p>
+                Your favourite destination for delicious food
+                from the best restaurants around you.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="menu.html">Menu</a>
+        </div>
+
+        <div>
+            <h3>Orders</h3>
+            <a href="cart.html">Cart</a>
+            <a href="orders.html">Orders</a>
+            <a href="checkout.html">Checkout</a>
+        </div>
+
+        <div>
+            <h3>Account</h3>
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 FoodiesHub. All Rights Reserved.
+    </div>
+
+</footer>
+
+</body>
+</html>
