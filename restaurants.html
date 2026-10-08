@@ -1,1 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodies Hub - Restaurants</title>
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        nav {
+            background: #fff;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff4d2d;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #ff4d2d;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 55px 20px 35px;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin: 0 auto 40px;
+        }
+
+        .search-box input {
+            width: 500px;
+            max-width: 90%;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            outline: none;
+            font-size: 16px;
+            background: white;
+        }
+
+        .search-box input:focus {
+            border-color: #ff4d2d;
+        }
+
+        .restaurant-container {
+            width: 86%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding-bottom: 70px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.13);
+        }
+
+        .restaurant-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-info {
+            padding: 20px;
+        }
+
+        .restaurant-info h3 {
+            font-size: 22px;
+            margin-bottom: 9px;
+            color: #222;
+        }
+
+        .restaurant-info p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 14px;
+        }
+
+        .restaurant-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .view-menu-btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            background: #ff4d2d;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .view-menu-btn:hover {
+            background: #e63d20;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer p {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        @media (max-width: 900px) {
+            .restaurant-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav ul li a {
+                font-size: 13px;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .restaurant-container {
+                grid-template-columns: 1fr;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">Foodies Hub</div>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html">Restaurants</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="cart.html">Cart</a></li>
+            <li><a href="orders.html">Orders</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+        <h1>Explore Restaurants</h1>
+        <p>Discover delicious food from your favourite restaurants</p>
+    </section>
+
+
+    <!-- SEARCH -->
+    <div class="search-box">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search restaurants..."
+            onkeyup="searchRestaurants()"
+        >
+    </div>
+
+
+    <!-- RESTAURANTS -->
+    <div class="restaurant-container">
+
+
+        <!-- 1. SPICE ROUTE KITCHEN -->
+        <div class="restaurant-card">
+            <img
+                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80"
+                alt="Spice Route Kitchen"
+            >
+
+            <div class="restaurant-info">
+                <h3>Spice Route Kitchen</h3>
+
+                <p>
+                    Authentic Indian flavours and delicious traditional dishes
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.5</span>
+                    <span>🍽️ Indian & Biryani</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 2. EMPIRE RESTAURANT -->
+        <div class="restaurant-card">
+            <img
+                src="https://enstore-app-storage.s3.ap-south-1.amazonaws.com/3985/item-92574871-b173d3afb911ea817e0c880ea746a49a-wLkSbzJNCK.png"
+                alt="Empire Restaurant"
+            >
+
+            <div class="restaurant-info">
+                <h3>Empire Restaurant</h3>
+
+                <p>
+                    Delicious Indian and Arabian dishes
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.4</span>
+                    <span>🍽️ Indian & Arabian</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 3. UDUPI GARDEN -->
+        <div class="restaurant-card">
+            <img
+                src="https://b.zmtcdn.com/data/dish_photos/923/f0407299cc66fb4b0e923382ef878923.jpg"
+                alt="Udupi Garden"
+            >
+
+            <div class="restaurant-info">
+                <h3>Udupi Garden</h3>
+
+                <p>
+                    Authentic South Indian vegetarian specialities
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.3</span>
+                    <span>🍽️ South Indian</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 4. MEGHANA FOODS -->
+        <div class="restaurant-card">
+            <img
+                src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_600%2Ch_468/DINEOUT_ALL_RESTAURANTS/IMAGES/RESTAURANT_IMAGE_SERVICE/2024/8/14/ad066eb2-1343-4d18-a978-f4ceaf061082_20240814T150123875.PNG"
+                alt="Meghana Foods"
+            >
+
+            <div class="restaurant-info">
+                <h3>Meghana Foods</h3>
+
+                <p>
+                    Famous for spicy and flavourful biryani
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.6</span>
+                    <span>🍽️ Andhra & Biryani</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 5. TRUFFLES -->
+        <div class="restaurant-card">
+            <img
+                src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_600,h_468/v1691569876/e06090ef25293dd3cc6710f191adcc43.jpg"
+                alt="Truffles"
+            >
+
+            <div class="restaurant-info">
+                <h3>Truffles</h3>
+
+                <p>
+                    Burgers, sandwiches and delicious continental food
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.5</span>
+                    <span>🍔 Burgers & Cafe</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 6. WOW MOMO -->
+        <div class="restaurant-card">
+            <img
+                src="https://b.zmtcdn.com/data/pictures/9/19941979/66f765dac49329c344bece8529f17835.jpg"
+                alt="Wow Momo"
+            >
+
+            <div class="restaurant-info">
+                <h3>Wow Momo</h3>
+
+                <p>
+                    Delicious momos with exciting flavours
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.2</span>
+                    <span>🥟 Momos</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 7. PIZZA HUT -->
+        <div class="restaurant-card">
+            <img
+                src="https://b.zmtcdn.com/data/pictures/5/15875/4d9ba90f122e854bd2d3428b9cd515d0_featured_v2.jpg"
+                alt="Pizza Hut"
+            >
+
+            <div class="restaurant-info">
+                <h3>Pizza Hut</h3>
+
+                <p>
+                    Fresh pizzas, sides and cheesy favourites
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.4</span>
+                    <span>🍕 Pizza</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 8. ANJAPPAR -->
+        <div class="restaurant-card">
+            <img
+                src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/cxjyyl0vqbzxlv348eg9"
+                alt="Anjappar"
+            >
+
+            <div class="restaurant-info">
+                <h3>Anjappar</h3>
+
+                <p>
+                    Authentic South Indian and Chettinad cuisine
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.3</span>
+                    <span>🍗 Chettinad</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 9. NAMMA TIFFIN CENTER -->
+        <div class="restaurant-card">
+            <img
+                src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80"
+                alt="Namma Tiffin Center"
+            >
+
+            <div class="restaurant-info">
+                <h3>Namma Tiffin Center</h3>
+
+                <p>
+                    Traditional South Indian breakfast and tiffins
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.4</span>
+                    <span>🥞 Tiffins</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+
+        <!-- 10. FRIES CORNER -->
+        <div class="restaurant-card">
+            <img
+                src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80"
+                alt="Fries Corner"
+            >
+
+            <div class="restaurant-info">
+                <h3>Fries Corner</h3>
+
+                <p>
+                    Crispy fries and tasty quick bites
+                </p>
+
+                <div class="restaurant-meta">
+                    <span>⭐ 4.2</span>
+                    <span>🍟 Fast Food</span>
+                </div>
+
+                <a href="menu.html" class="view-menu-btn">
+                    View Menu
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Foodies Hub. All Rights Reserved.</p>
+    </footer>
+
+
+    <!-- SEARCH -->
+    <script>
+        function searchRestaurants() {
+            let searchText = document
+                .getElementById("searchInput")
+                .value
+                .toLowerCase();
+
+            let cards = document.querySelectorAll(".restaurant-card");
+
+            cards.forEach(function(card) {
+                let name = card
+                    .querySelector("h3")
+                    .innerText
+                    .toLowerCase();
+
+                if (name.includes(searchText)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
