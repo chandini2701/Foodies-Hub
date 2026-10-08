@@ -1,1 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>FoodiesHub | Restaurants</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#fffaf5;
+    color:#222;
+}
+
+/* NAVBAR */
+
+.navbar{
+    background:white;
+    padding:18px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:100;
+    box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+
+.logo{
+    font-size:28px;
+    font-weight:800;
+    color:#ff4d2d;
+}
+
+.logo span{
+    color:#222;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    align-items:center;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:#ff4d2d;
+}
+
+.login-btn{
+    border:2px solid #ff4d2d;
+    color:#ff4d2d !important;
+    padding:9px 20px;
+    border-radius:25px;
+}
+
+/* HEADER */
+
+.header{
+    text-align:center;
+    padding:55px 20px 35px;
+    background:linear-gradient(135deg,#fff0e5,#fffaf5);
+}
+
+.header h1{
+    font-size:44px;
+    margin-bottom:12px;
+}
+
+.header h1 span{
+    color:#ff4d2d;
+}
+
+.header p{
+    color:#777;
+    font-size:17px;
+}
+
+/* SEARCH */
+
+.search{
+    width:80%;
+    max-width:700px;
+    margin:30px auto;
+    display:flex;
+    background:white;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.09);
+    overflow:hidden;
+}
+
+.search input{
+    flex:1;
+    border:none;
+    outline:none;
+    padding:17px 20px;
+    font-size:16px;
+}
+
+.search button{
+    border:none;
+    background:#ff4d2d;
+    color:white;
+    padding:0 28px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* CONTAINER */
+
+.container{
+    width:86%;
+    margin:40px auto 70px;
+}
+
+/* GRID */
+
+.restaurant-container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+}
+
+/* CARD */
+
+.restaurant-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    box-shadow:0 6px 22px rgba(0,0,0,0.09);
+    transition:0.3s;
+}
+
+.restaurant-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 14px 30px rgba(0,0,0,0.14);
+}
+
+/* IMAGE */
+
+.restaurant-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+/* DETAILS */
+
+.restaurant-details{
+    padding:20px;
+}
+
+.restaurant-details h2{
+    font-size:23px;
+    margin-bottom:12px;
+    color:#222;
+}
+
+.restaurant-details p{
+    color:#666;
+    font-size:14px;
+    margin:8px 0;
+    line-height:1.4;
+}
+
+.restaurant-details strong{
+    color:#333;
+}
+
+/* RATING */
+
+.rating{
+    color:#e39b00 !important;
+    font-weight:bold;
+    font-size:16px !important;
+}
+
+/* BUTTON */
+
+.view-menu-btn{
+    display:block;
+    text-align:center;
+    background:#ff4d2d;
+    color:white;
+    padding:12px;
+    margin-top:18px;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.view-menu-btn:hover{
+    background:#e63d20;
+}
+
+/* FOOTER */
+
+footer{
+    background:#181818;
+    color:white;
+    padding:40px 7% 20px;
+}
+
+.footer-content{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:35px;
+}
+
+.footer-logo{
+    color:#ff4d2d;
+    font-size:27px;
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+footer h3{
+    margin-bottom:15px;
+}
+
+footer p,
+footer a{
+    color:#aaa;
+    line-height:1.7;
+}
+
+footer a{
+    display:block;
+    text-decoration:none;
+    margin:7px 0;
+}
+
+footer a:hover{
+    color:#ff4d2d;
+}
+
+.copyright{
+    text-align:center;
+    border-top:1px solid #333;
+    margin-top:30px;
+    padding-top:18px;
+    color:#777;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+    .restaurant-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .restaurant-container{
+        grid-template-columns:1fr;
+    }
+
+    .header h1{
+        font-size:34px;
+    }
+
+    .search{
+        width:90%;
+    }
+
+    .footer-content{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar">
+
+    <div class="logo">
+        Foodies<span>Hub</span>
+    </div>
+
+    <div class="nav-links">
+
+        <a href="index.html">Home</a>
+
+        <a href="restaurants.html">Restaurants</a>
+
+        <a href="menu.html">Menu</a>
+
+        <a href="orders.html">Orders</a>
+
+        <a href="cart.html">Cart 🛒</a>
+
+        <a href="login.html" class="login-btn">Login</a>
+
+    </div>
+
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="header">
+
+    <h1>
+        Discover <span>Restaurants</span>
+    </h1>
+
+    <p>
+        Explore your favourite restaurants and delicious food
+    </p>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search restaurants..."
+        onkeyup="searchRestaurants()"
+    >
+
+    <button>
+        Search
+    </button>
+
+</div>
+
+
+<!-- RESTAURANTS -->
+
+<div class="container">
+
+<div class="restaurant-container" id="restaurantContainer">
+
+
+<!-- 1 PARADISE -->
+
+<div class="restaurant-card">
+
+<img
+src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_600%2Ch_468/v1691800546/a56a291ca2e7e2c0f8f880987c106481.jpg"
+alt="Paradise Biryani"
+onerror="this.src='https://via.placeholder.com/600x400?text=Paradise+Biryani';"
+>
+
+<div class="restaurant-details">
+
+<h2>Paradise Biryani</h2>
+
+<p>
+<strong>Address:</strong>
+Hyderabad
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543210
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Biryani, Indian
+</p>
+
+<p class="rating">
+⭐ 4.5
+</p>
+
+<p>
+<strong>Delivery:</strong>
+30-40 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 2 EMPIRE -->
+
+<div class="restaurant-card">
+
+<img
+src="https://enstore-app-storage.s3.ap-south-1.amazonaws.com/3985/item-92574871-b173d3afb911ea817e0c880ea746a49a-wLkSbzJNCK.png"
+alt="Empire Restaurant"
+onerror="this.src='https://via.placeholder.com/600x400?text=Empire+Restaurant';"
+>
+
+<div class="restaurant-details">
+
+<h2>Empire Restaurant</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543211
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Indian, Chinese, Arabian
+</p>
+
+<p class="rating">
+⭐ 4.4
+</p>
+
+<p>
+<strong>Delivery:</strong>
+30-40 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 3 UDUPI -->
+
+<div class="restaurant-card">
+
+<img
+src="https://b.zmtcdn.com/data/dish_photos/923/f0407299cc66fb4b0e923382ef878923.jpg"
+alt="Udupi Garden"
+onerror="this.src='https://via.placeholder.com/600x400?text=Udupi+Garden';"
+>
+
+<div class="restaurant-details">
+
+<h2>Udupi Garden</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543212
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+South Indian
+</p>
+
+<p class="rating">
+⭐ 4.6
+</p>
+
+<p>
+<strong>Delivery:</strong>
+25-35 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 4 MEGHANA -->
+
+<div class="restaurant-card">
+
+<img
+src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_600%2Ch_468/DINEOUT_ALL_RESTAURANTS/IMAGES/RESTAURANT_IMAGE_SERVICE/2024/8/14/ad066eb2-1343-4d18-a978-f4ceaf061082_20240814T150123875.PNG"
+alt="Meghana Foods"
+onerror="this.src='https://via.placeholder.com/600x400?text=Meghana+Foods';"
+>
+
+<div class="restaurant-details">
+
+<h2>Meghana Foods</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543213
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Andhra, Biryani
+</p>
+
+<p class="rating">
+⭐ 4.5
+</p>
+
+<p>
+<strong>Delivery:</strong>
+30-40 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 5 TRUFFLES -->
+
+<div class="restaurant-card">
+
+<img
+src="https://dineout-media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_600,h_468/v1691569876/e06090ef25293dd3cc6710f191adcc43.jpg"
+alt="Truffles"
+onerror="this.src='https://via.placeholder.com/600x400?text=Truffles';"
+>
+
+<div class="restaurant-details">
+
+<h2>Truffles</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543214
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Burgers, Continental
+</p>
+
+<p class="rating">
+⭐ 4.5
+</p>
+
+<p>
+<strong>Delivery:</strong>
+25-35 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 6 BURGER KING INTENTIONALLY REMOVED -->
+
+
+<!-- 7 WOW MOMO -->
+
+<div class="restaurant-card">
+
+<img
+src="https://b.zmtcdn.com/data/pictures/9/19941979/66f765dac49329c344bece8529f17835.jpg"
+alt="Wow Momo"
+onerror="this.src='https://via.placeholder.com/600x400?text=Wow+Momo';"
+>
+
+<div class="restaurant-details">
+
+<h2>Wow Momo</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543215
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Momos, Tibetan
+</p>
+
+<p class="rating">
+⭐ 4.3
+</p>
+
+<p>
+<strong>Delivery:</strong>
+25-35 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 8 PIZZA HUT -->
+
+<div class="restaurant-card">
+
+<img
+src="https://b.zmtcdn.com/data/pictures/5/15875/4d9ba90f122e854bd2d3428b9cd515d0_featured_v2.jpg"
+alt="Pizza Hut"
+onerror="this.src='https://via.placeholder.com/600x400?text=Pizza+Hut';"
+>
+
+<div class="restaurant-details">
+
+<h2>Pizza Hut</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543216
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Pizza, Italian
+</p>
+
+<p class="rating">
+⭐ 4.2
+</p>
+
+<p>
+<strong>Delivery:</strong>
+25-35 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 9 ANJAPPAR -->
+
+<div class="restaurant-card">
+
+<img
+src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy%2Cf_auto%2Cq_auto%2Cw_300%2Ch_300%2Ce_grayscale%2Cc_fit/cxjyyl0vqbzxlv348eg9"
+alt="Anjappar"
+onerror="this.src='https://via.placeholder.com/600x400?text=Anjappar';"
+>
+
+<div class="restaurant-details">
+
+<h2>Anjappar</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543217
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+South Indian, Chettinad
+</p>
+
+<p class="rating">
+⭐ 4.3
+</p>
+
+<p>
+<strong>Delivery:</strong>
+30-40 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 10 NAMMA TIFFIN -->
+
+<div class="restaurant-card">
+
+<img
+src="https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=900&q=80"
+alt="Namma Tiffin Center"
+onerror="this.src='https://via.placeholder.com/600x400?text=Namma+Tiffin+Center';"
+>
+
+<div class="restaurant-details">
+
+<h2>Namma Tiffin Center</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543218
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+South Indian
+</p>
+
+<p class="rating">
+⭐ 4.4
+</p>
+
+<p>
+<strong>Delivery:</strong>
+20-30 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+<!-- 11 FRIES -->
+
+<div class="restaurant-card">
+
+<img
+src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=900&q=80"
+alt="Fries"
+onerror="this.src='https://via.placeholder.com/600x400?text=Fries';"
+>
+
+<div class="restaurant-details">
+
+<h2>Fries</h2>
+
+<p>
+<strong>Address:</strong>
+Bengaluru
+</p>
+
+<p>
+<strong>Phone:</strong>
++91 9876543219
+</p>
+
+<p>
+<strong>Cuisine:</strong>
+Fast Food
+</p>
+
+<p class="rating">
+⭐ 4.2
+</p>
+
+<p>
+<strong>Delivery:</strong>
+20-30 mins
+</p>
+
+<a href="menu.html" class="view-menu-btn">
+View Menu
+</a>
+
+</div>
+</div>
+
+
+</div>
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-content">
+
+<div>
+
+<div class="footer-logo">
+FoodiesHub
+</div>
+
+<p>
+Your favourite destination for delicious food
+from the best restaurants around you.
+</p>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<a href="index.html">Home</a>
+
+<a href="restaurants.html">Restaurants</a>
+
+<a href="menu.html">Menu</a>
+
+</div>
+
+<div>
+
+<h3>Orders</h3>
+
+<a href="cart.html">Cart</a>
+
+<a href="orders.html">Orders</a>
+
+<a href="checkout.html">Checkout</a>
+
+</div>
+
+<div>
+
+<h3>Account</h3>
+
+<a href="login.html">Login</a>
+
+<a href="register.html">Register</a>
+
+</div>
+
+</div>
+
+<div class="copyright">
+
+© 2026 FoodiesHub. All Rights Reserved.
+
+</div>
+
+</footer>
+
+
+<script>
+
+function searchRestaurants(){
+
+    let input =
+        document.getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+    let cards =
+        document.querySelectorAll(".restaurant-card");
+
+    cards.forEach(function(card){
+
+        let name =
+            card.querySelector("h2")
+            .innerText
+            .toLowerCase();
+
+        if(name.includes(input)){
+            card.style.display = "block";
+        }
+        else{
+            card.style.display = "none";
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>
