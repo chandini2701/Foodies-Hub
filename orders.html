@@ -1,1 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders - Foodies Hub</title>
 
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f7f3ec;
+    color: #29251f;
+}
+
+/* NAVBAR */
+nav {
+    background: #26352b;
+    padding: 18px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #f5c76b;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+nav ul li a:hover {
+    color: #f5c76b;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 55px 20px 35px;
+}
+
+.header h1 {
+    font-size: 42px;
+    color: #26352b;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: #777;
+    font-size: 16px;
+}
+
+/* ORDERS */
+.orders-container {
+    width: 85%;
+    max-width: 1000px;
+    margin: 10px auto 60px;
+}
+
+.order-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #e5dfd5;
+}
+
+.order-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+}
+
+.restaurant {
+    font-size: 21px;
+    font-weight: bold;
+    color: #26352b;
+}
+
+.order-id {
+    color: #888;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.status {
+    background: #e6f4e9;
+    color: #28733d;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    color: #555;
+}
+
+.item-name {
+    font-weight: 500;
+}
+
+.order-bottom {
+    border-top: 1px solid #eee;
+    margin-top: 15px;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total {
+    font-size: 19px;
+    font-weight: bold;
+    color: #26352b;
+}
+
+.order-date {
+    color: #888;
+    font-size: 14px;
+}
+
+.view-btn {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 11px 20px;
+    background: #e4775d;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.view-btn:hover {
+    background: #cc6048;
+}
+
+/* EMPTY / INFO */
+.info {
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.info h3 {
+    color: #26352b;
+    margin-bottom: 8px;
+}
+
+.info p {
+    color: #777;
+}
+
+/* FOOTER */
+footer {
+    background: #26352b;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+footer p {
+    color: #ccc;
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+footer a {
+    color: #f5c76b;
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 14px;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .orders-container {
+        width: 92%;
+    }
+
+    .order-top,
+    .order-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Foodies Hub</div>
+
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="restaurants.html">Restaurants</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="register.html">Register</a></li>
+    </ul>
+</nav>
+
+<!-- HEADER -->
+<section class="header">
+    <h1>My Orders</h1>
+    <p>Track your recent food orders</p>
+</section>
+
+<!-- ORDERS -->
+<div class="orders-container">
+
+    <!-- ORDER 1 -->
+    <div class="order-card">
+
+        <div class="order-top">
+            <div>
+                <div class="restaurant">Paradise Biryani</div>
+                <div class="order-id">Order ID: #FH1001</div>
+            </div>
+
+            <div class="status">Delivered</div>
+        </div>
+
+        <div class="item">
+            <span class="item-name">Chicken Biryani × 1</span>
+            <span>₹280</span>
+        </div>
+
+        <div class="item">
+            <span class="item-name">Butter Naan × 2</span>
+            <span>₹240</span>
+        </div>
+
+        <div class="order-bottom">
+            <div>
+                <div class="order-date">08 Oct 2026</div>
+                <div class="order-date">Payment: Cash on Delivery</div>
+            </div>
+
+            <div class="total">₹520</div>
+        </div>
+
+        <a href="menu.html" class="view-btn">Order Again</a>
+
+    </div>
+
+
+    <!-- ORDER 2 -->
+    <div class="order-card">
+
+        <div class="order-top">
+            <div>
+                <div class="restaurant">Udupi Garden</div>
+                <div class="order-id">Order ID: #FH1002</div>
+            </div>
+
+            <div class="status">Delivered</div>
+        </div>
+
+        <div class="item">
+            <span class="item-name">Masala Dosa × 2</span>
+            <span>₹180</span>
+        </div>
+
+        <div class="item">
+            <span class="item-name">Idly Vada × 1</span>
+            <span>₹80</span>
+        </div>
+
+        <div class="order-bottom">
+            <div>
+                <div class="order-date">06 Oct 2026</div>
+                <div class="order-date">Payment: UPI</div>
+            </div>
+
+            <div class="total">₹260</div>
+        </div>
+
+        <a href="menu.html" class="view-btn">Order Again</a>
+
+    </div>
+
+
+    <!-- ORDER 3 -->
+    <div class="order-card">
+
+        <div class="order-top">
+            <div>
+                <div class="restaurant">Meghana Foods</div>
+                <div class="order-id">Order ID: #FH1003</div>
+            </div>
+
+            <div class="status">Preparing</div>
+        </div>
+
+        <div class="item">
+            <span class="item-name">Chicken 65 × 1</span>
+            <span>₹220</span>
+        </div>
+
+        <div class="order-bottom">
+            <div>
+                <div class="order-date">04 Oct 2026</div>
+                <div class="order-date">Payment: Card</div>
+            </div>
+
+            <div class="total">₹220</div>
+        </div>
+
+        <a href="menu.html" class="view-btn">View Menu</a>
+
+    </div>
+
+
+    <div class="info">
+        <h3>Want to order something delicious?</h3>
+        <p>Explore restaurants and discover your favourite food.</p>
+        <a href="restaurants.html" class="view-btn">Explore Restaurants</a>
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div>
+        <a href="index.html">Home</a>
+        <a href="restaurants.html">Restaurants</a>
+        <a href="menu.html">Menu</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+        <a href="orders.html">Orders</a>
+    </div>
+
+    <p>© 2026 Foodies Hub. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
